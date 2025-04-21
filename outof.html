@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .header-content {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .product {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .product-details {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .product h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .product p {
+            margin-bottom: 10px;
+        }
+
+        .product .price {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #2a6496;
+            margin-bottom: 15px;
+        }
+
+        .product button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            margin-top: auto;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .product button:hover {
+            background-color: #45a049;
+        }
+
+        .product-options {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 10;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-options h3 {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .product-options label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .product-options select, 
+        .product-options input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .option-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .option-buttons button {
+            flex: 1;
+            padding: 8px;
+        }
+
+        .option-buttons .cancel {
+            background-color: #f44336;
+        }
+
+        .option-buttons .cancel:hover {
+            background-color: #d32f2f;
+        }
+
+        .out-of-stock {
+            text-align: center;
+            margin-top: 20px;
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .cart-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Product Store</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="product">
+            <img src="1f30a4ae-eca0-4a19-ab72-4f21a279cdaa.jpg" alt="Cool Theme">
+            <div class="product-details">
+                <h2>Cool Theme</h2>
+                <p>A stylish and modern theme for your needs.</p>
+                <p class="price">$19.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-options">
+                <h3>Customize Your Order</h3>
+                <label>
+                    Quantity:
+                    <input type="number" min="1" value="1" class="quantity">
+                </label>
+                <label>
+                    Color:
+                    <select class="color">
+                        <option>Blue</option>
+                        <option>Red</option>
+                        <option>Green</option>
+                        <option>Black</option>
+                    </select>
+                </label>
+                <label>
+                    Size:
+                    <select class="size">
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                    </select>
+                </label>
+                <div class="option-buttons">
+                    <button class="confirm-add">Confirm</button>
+                    <button class="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="ed4a8f96-7864-4bdf-b475-ea1a37cfe0cb.jpg" alt="Soft Theme">
+            <div class="product-details">
+                <h2>Soft Theme</h2>
+                <p>A gentle and soothing theme for your space.</p>
+                <p class="price">$24.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-options">
+                <h3>Customize Your Order</h3>
+                <label>
+                    Quantity:
+                    <input type="number" min="1" value="1" class="quantity">
+                </label>
+                <label>
+                    Color:
+                    <select class="color">
+                        <option>Pink</option>
+                        <option>Lavender</option>
+                        <option>Mint</option>
+                        <option>White</option>
+                    </select>
+                </label>
+                <label>
+                    Size:
+                    <select class="size">
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                    </select>
+                </label>
+                <div class="option-buttons">
+                    <button class="confirm-add">Confirm</button>
+                    <button class="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="eeb7e970-232e-43c5-b247-f1322e998355.jpg" alt="Super Hero Theme">
+            <div class="product-details">
+                <h2>Super Hero Theme</h2>
+                <p>An exciting theme for superhero fans.</p>
+                <p class="price">$29.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-options">
+                <h3>Customize Your Order</h3>
+                <label>
+                    Quantity:
+                    <input type="number" min="1" value="1" class="quantity">
+                </label>
+                <label>
+                    Hero:
+                    <select class="color">
+                        <option>Superman</option>
+                        <option>Batman</option>
+                        <option>Wonder Woman</option>
+                        <option>Spider-Man</option>
+                    </select>
+                </label>
+                <label>
+                    Size:
+                    <select class="size">
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                    </select>
+                </label>
+                <div class="option-buttons">
+                    <button class="confirm-add">Confirm</button>
+                    <button class="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="B49FB7BD-D6B7-4DCD-B1B9-7694B3B7E9B5 (1).jpg" alt="Vintage Theme">
+            <div class="product-details">
+                <h2>Vintage Theme</h2>
+                <p>A classic retro theme for nostalgic vibes.</p>
+                <p class="price">$14.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-options">
+                <h3>Customize Your Order</h3>
+                <label>
+                    Quantity:
+                    <input type="number" min="1" value="1" class="quantity">
+                </label>
+                <label>
+                    Style:
+                    <select class="color">
+                        <option>1950s</option>
+                        <option>1960s</option>
+                        <option>1970s</option>
+                        <option>1980s</option>
+                    </select>
+                </label>
+                <label>
+                    Size:
+                    <select class="size">
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                    </select>
+                </label>
+                <div class="option-buttons">
+                    <button class="confirm-add">Confirm</button>
+                    <button class="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="out-of-stock">
+        <p>Other products are currently out of stock. Please try again later.</p>
+    </div>
+
+    <div class="cart-notification">
+        Item added to cart!
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cancelButtons = document.querySelectorAll('.cancel');
+            const confirmButtons = document.querySelectorAll('.confirm-add');
+            const notification = document.querySelector('.cart-notification');
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const product = this.closest('.product');
+                    const options = product.querySelector('.product-options');
+                    options.style.display = 'flex';
+                });
+            });
+
+            cancelButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const options = this.closest('.product-options');
+                    options.style.display = 'none';
+                });
+            });
+
+            confirmButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const options = this.closest('.product-options');
+                    const product = options.closest('.product');
+                    const productName = product.querySelector('h2').textContent;
+                    const quantity = product.querySelector('.quantity').value;
+                    const color = product.querySelector('.color').value;
+                    const size = product.querySelector('.size').value;
+                    
+                    options.style.display = 'none';
+                    
+            
+                    notification.style.display = 'block';
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                    }, 3000);
+
+                
+                    console.log('Added to cart:', {
+                        product: productName,
+                        quantity: quantity,
+                        color: color,
+                        size: size
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
